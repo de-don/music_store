@@ -1,4 +1,5 @@
 from rest_framework import permissions
+
 from music_store.models import LabelUser
 
 
@@ -15,6 +16,7 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
 
         # Write permissions are only allowed to the owner of the track_label.
         return obj.owner == request.user
+
 
 class IsLabelUserOrReadOnly(permissions.BasePermission):
 

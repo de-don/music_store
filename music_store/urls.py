@@ -1,6 +1,7 @@
 from django.conf.urls import url
-from music_store import views
 from rest_framework.urlpatterns import format_suffix_patterns
+
+from music_store import views
 
 urlpatterns = [
     url(r'^$', views.api_root),
