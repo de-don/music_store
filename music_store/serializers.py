@@ -1,17 +1,11 @@
 from rest_framework import serializers
-from music_store.models import DefaultUser, ListenerUser, LabelUser, TrackLabel
-
-
-class DefaultUserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = DefaultUser
-        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'balance', 'user_level')
+from music_store.models import ListenerUser, LabelUser, TrackLabel
 
 
 class ListenerUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = ListenerUser
-        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'balance', 'preference', 'user_level')
+        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'balance', 'preference')
 
 
 class LabelUserSerializer(serializers.ModelSerializer):
@@ -21,7 +15,7 @@ class LabelUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = LabelUser
         fields = ('id', 'username', 'first_name', 'last_name',
-                  'email', 'balance', 'label_info', 'track_labels', 'user_level')
+                  'email', 'balance', 'label_info', 'track_labels')
 
 
 class TrackLabelSerializer(serializers.ModelSerializer):

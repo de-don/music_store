@@ -1,21 +1,23 @@
-from music_store.models import DefaultUser, ListenerUser, LabelUser, TrackLabel
-from music_store.serializers import (DefaultUserSerializer, ListenerUserSerializer,
+from music_store.models import ListenerUser, LabelUser, TrackLabel
+from music_store.serializers import (ListenerUserSerializer,
                                      LabelUserSerializer, TrackLabelSerializer)
 from rest_framework import generics
 from rest_framework import permissions
 
 from .permissions import IsOwnerOrReadOnly, IsLabelUserOrReadOnly
 
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework.reverse import reverse
 
-class DefaultUserList(generics.ListCreateAPIView):
-    queryset = DefaultUser.objects.all()
-    serializer_class = DefaultUserSerializer
 
-
-class DefaultUserDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = DefaultUser.objects.all()
-    serializer_class = DefaultUserSerializer
-
+@api_view(['GET'])
+def api_root(request, format=None):
+    return Response({
+        'listeners': reverse('listeners-list', request=request, format=format),
+        'labelusers': reverse('labelusers-list', request=request, format=format),
+        'track_labels': reverse('track_labels-list', request=request, format=format)
+    })
 
 class ListenerUserList(generics.ListCreateAPIView):
     queryset = ListenerUser.objects.all()
