@@ -1,19 +1,19 @@
-from music_store.models import ListenerUser
-from music_store.serializers import ListenerUserSerializer
+from music_store.models import DefaultUser, ListenerUser, LabelUser
+from music_store.serializers import *
 from rest_framework import generics
 
 
-class ListenerList(generics.ListCreateAPIView):
+class DefaultUserList(generics.ListCreateAPIView):
     """
     List all listeners, or create a new.
     """
-    queryset = ListenerUser.objects.all()
-    serializer_class = ListenerUserSerializer
+    queryset = DefaultUser.objects.all()
+    serializer_class = DefaultUserSerializer
 
 
-class ListenerDetail(generics.RetrieveUpdateDestroyAPIView):
+class DefaultUserDetail(generics.RetrieveUpdateDestroyAPIView):
     """
-    Retrieve, update or delete a code snippet.
+    Retrieve, update or delete a listeners.
     """
-    queryset = ListenerUser.objects.all()
-    serializer_class = ListenerUserSerializer
+    queryset = DefaultUser.objects.all()
+    serializer_class = DefaultUserSerializer

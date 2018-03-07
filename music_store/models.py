@@ -1,13 +1,22 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
-class DefaultUser(models.Model):
-    email = models.CharField(max_length=100, default='', editable=False)
-    password = models.CharField(max_length=100, default='')
+class DefaultUser(User):
+    """ default user model
 
-    name = models.CharField(max_length=100, blank=True, default='')
-    is_active = models.BooleanField(default=False)
+    Attrs:
+        balance: added just for test
+    """
+
+    balance = models.FloatField(default=0.0)
 
 
 class ListenerUser(DefaultUser):
-    created = models.DateTimeField(auto_now_add=True)
+    """ Simple listener """
+    preference = models.CharField(max_length=200, blank=True)
+
+
+class LabelUser(DefaultUser):
+    """ Label Participant """
+    label_info = models.CharField(max_length=200, blank=True)
